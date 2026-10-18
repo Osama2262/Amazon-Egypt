@@ -10,6 +10,14 @@ A Java-based UI automation framework for testing selected shopping workflows on 
 
 > ⚠️ **Note:** This is an automation practice project. Product availability, prices, shipping options, and page structure can change, so test results may vary over time.
 
+## 🎬 Demo video
+
+A short recording of the test suite running on Amazon Egypt:
+
+[▶️ Watch the demo video](Amazon%20egypt%20video.mp4)
+
+<!-- To show the video inline, drag "Amazon egypt video.mp4" into this README in the GitHub web editor. GitHub inserts a user-attachments link that plays directly on the page, and you can replace the link above with it. -->
+
 ## 🛠️ Tech Stack
 
 - **Java Development Kit (JDK) 23**: compiles and runs the project.
