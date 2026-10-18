@@ -12,22 +12,16 @@ public class DriverFactory
         if (browser == null || browser.isBlank()) {
             throw new IllegalArgumentException("Browser must be configured in config.properties");
         }
-        WebDriver driver;
-        switch (browser.toLowerCase().trim())
-        {
-            case "chrome":
-                driver = GetChromeDriver.getChromeDriver();
-                break;
-            case "firefox":
-                    driver = GetFireFoxDriver.getFireFoxDriver();
-                    break;
-            case "edge":
-                driver = GetEdgeDriver.getEdgeDriver();
-                break;
-            default:
+        WebDriver driver = switch (browser.toLowerCase().trim()) {
+            case "chrome" -> GetChromeDriver.getChromeDriver();
+            case "firefox" -> GetFireFoxDriver.getFireFoxDriver();
+            case "edge" -> GetEdgeDriver.getEdgeDriver();
+            default -> {
                 log.error("Unsupported browser configured: {}", browser);
                 throw new IllegalArgumentException("Browser not recognized: " + browser);
-        }
+            }
+        };
+
         log.info("WebDriver ready for browser: {}", browser);
         return driver;
     }
