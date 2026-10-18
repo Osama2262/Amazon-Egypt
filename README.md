@@ -14,7 +14,7 @@ A Java-based UI automation framework for testing selected shopping workflows on 
 
 A short recording of the test suite running on Amazon Egypt:
 
-[▶️ Watch the demo video](Amazon_egypt_video.mp4)
+[▶️ Watch the demo video](https://github.com/Osama2262/Amazon-Egypt/raw/main/Amazon_egypt_video.mp4)
 
 <!-- To show the video inline, drag "Amazon egypt video.mp4" into this README in the GitHub web editor. GitHub inserts a user-attachments link that plays directly on the page, and you can replace the link above with it. -->
 
