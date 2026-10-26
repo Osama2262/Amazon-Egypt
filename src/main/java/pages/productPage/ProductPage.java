@@ -96,7 +96,7 @@ import java.util.List;
            log.info("Opening Go to basket link");
            findElement(goToBasket).click();
        }
-       public void clickAddToCartButton() {
+       public ProductPage clickAddToCartButton() {
            log.info("Clicking Add to Cart on product details page");
            findElement(addToCartPDP).click();
        }
