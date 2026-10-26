@@ -115,9 +115,9 @@ import java.util.List;
        public boolean collectTotalPrice() {
            log.info("Comparing cart subtotal with selected product prices");
            totalPrice = firstItemPrice + secondItemPrice;
-           String temp = findElement(totalSubtotal).getText().replaceAll("[^0-9]", "");
-           temp = temp.substring(0, temp.length() - 2);
-           int subtotal = Integer.parseInt(temp);
+           String text = findElement(totalSubtotal).getText().replaceAll("[^0-9]", "");
+           text = text.substring(0, text.length() - 2);
+           int subtotal = Integer.parseInt(text);
            return subtotal == totalPrice;
        }
        public ProductPage setMaxPrice(int targetPrice) {
