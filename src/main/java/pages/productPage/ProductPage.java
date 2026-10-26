@@ -77,7 +77,10 @@ import java.util.List;
        }
        public ProductPage openFirstProduct() {
            log.info("Opening first product result");
-           findElements(productList).getFirst().click();
+           WebElement firstProduct = findElements(productList).getFirst();
+           safeClick(firstProduct);
+           explicitWaitElementLocated(productTitle);
+           explicitWaitElementLocated(itemPricePDP);
            firstItemPrice = Integer.parseInt(findElement(itemPricePDP).getText().replace(",",""));
            return this;
        }
