@@ -24,9 +24,9 @@ public class CartTest extends BaseTest {
         productPage.waitForSearchResults()
                 .openSecondProduct()
                 .clickAddToCartButton();
-        cartPage.doubleBackButton();
-        productPage.openSecondProduct()
-                .clickAddToCartButton();
+        productPage.goBackTwice();
+        productPage.waitForSearchResults();
+
         cartPage.openCart();
         Assert.assertTrue(productPage.collectTotalPrice());
         Assert.assertEquals(cartPage.checkCartCounter(),2);
