@@ -70,6 +70,11 @@ import java.util.List;
            explicitWaitElementLocated(result_text);
            return this;
        }
+       public ProductPage waitForSearchResults() {
+           log.info("Waiting for search results to be visible");
+           explicitWaitElementLocated(productList);
+           return this;
+       }
        public ProductPage openFirstProduct() {
            log.info("Opening first product result");
            findElements(productList).getFirst().click();
