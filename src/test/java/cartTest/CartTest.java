@@ -17,12 +17,16 @@ public class CartTest extends BaseTest {
         ProductPage productPage = new ProductPage(driver);
         CartPage cartPage = new CartPage(driver);
         productPage.sendDataOnSearchBar(jsonFileManager.getValue("search5").toString())
-                .clickSearchButton();
-        productPage.openFirstProduct()
+                .clickSearchButton()
+                .openFirstProduct()
+                .clickAddToCartButton()
+                .goBackTwice();
+        productPage.waitForSearchResults()
+                .openSecondProduct()
                 .clickAddToCartButton();
-        cartPage.doubleBackButton();
-        productPage.openSecondProduct()
-                .clickAddToCartButton();
+        productPage.goBackTwice();
+        productPage.waitForSearchResults();
+
         cartPage.openCart();
         Assert.assertTrue(productPage.collectTotalPrice());
         Assert.assertEquals(cartPage.checkCartCounter(),2);

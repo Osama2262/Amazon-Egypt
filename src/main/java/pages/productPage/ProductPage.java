@@ -30,7 +30,7 @@ import java.util.List;
        private final By firstItem = By.xpath("//div[@data-cel-widget='search_result_1']");
        private final By productList = By.xpath("//div[@role='listitem']");
        private final By secondItem = By.cssSelector("[data-cel-widget='search_result_2']");
-       private final By itemPricePDP = By.xpath("//div[@id='corePriceDisplay_desktop_feature_div']//span[@class='a-price-whole']");
+       private final By itemPricePDP = By.xpath("//span[contains(@class, 'a-price-whole')]");
        private final By totalSubtotal  = By.xpath("//div[@data-name='Subtotals']//span[@class='a-size-medium a-color-base sc-price sc-white-space-nowrap']");
        private final By firstCategory =By.xpath("//ul[@class='a-unordered-list a-horizontal a-size-small']//span[@class='a-list-item']");
        private final By addToCartPDP = By.id("add-to-cart-button");
@@ -70,15 +70,26 @@ import java.util.List;
            explicitWaitElementLocated(result_text);
            return this;
        }
+       public ProductPage waitForSearchResults() {
+           log.info("Waiting for search results to be visible");
+           explicitWaitElementLocated(productList);
+           return this;
+       }
        public ProductPage openFirstProduct() {
            log.info("Opening first product result");
-           findElements(productList).getFirst().click();
+           WebElement firstProduct = findElements(productList).getFirst();
+           safeClick(firstProduct);
+           explicitWaitElementLocated(productTitle);
+           explicitWaitElementLocated(itemPricePDP);
            firstItemPrice = Integer.parseInt(findElement(itemPricePDP).getText().replace(",",""));
            return this;
        }
        public ProductPage openSecondProduct() {
            log.info("Opening second product result");
-           findElements(productList).get(1).click();
+           WebElement secondProduct = findElements(productList).get(1);
+           safeClick(secondProduct);
+           explicitWaitElementLocated(productTitle);
+           explicitWaitElementLocated(itemPricePDP);
            secondItemPrice = Integer.parseInt(findElement(itemPricePDP).getText().replace(",",""));
            return this;
        }
@@ -96,16 +107,17 @@ import java.util.List;
            log.info("Opening Go to basket link");
            findElement(goToBasket).click();
        }
-       public void clickAddToCartButton() {
+       public ProductPage clickAddToCartButton() {
            log.info("Clicking Add to Cart on product details page");
            findElement(addToCartPDP).click();
+           return this;
        }
        public boolean collectTotalPrice() {
            log.info("Comparing cart subtotal with selected product prices");
            totalPrice = firstItemPrice + secondItemPrice;
-           String temp = findElement(totalSubtotal).getText().replaceAll("[^0-9]", "");
-           temp = temp.substring(0, temp.length() - 2);
-           int subtotal = Integer.parseInt(temp);
+           String text = findElement(totalSubtotal).getText().replaceAll("[^0-9]", "");
+           text = text.substring(0, text.length() - 2);
+           int subtotal = Integer.parseInt(text);
            return subtotal == totalPrice;
        }
        public ProductPage setMaxPrice(int targetPrice) {

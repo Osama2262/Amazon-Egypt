@@ -2,9 +2,7 @@ package pages.basePage;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -59,5 +57,22 @@ public class BasePage {
     {
         log.info("Navigating back from current page");
         driver.navigate().back();
+    }
+    public void goBackTwice()
+    {
+        log.info("Going back twice");
+        driver.navigate().back();
+        driver.navigate().back();
+
+    }
+    public void safeClick(WebElement element) {
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+
+            element.click();
+        } catch (StaleElementReferenceException | ElementClickInterceptedException e) {
+            log.warn("Standard click failed, attempting JavaScript click fallback: {}", e.getMessage());
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
     }
 }
