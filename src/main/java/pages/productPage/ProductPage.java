@@ -30,7 +30,7 @@ import java.util.List;
        private final By firstItem = By.xpath("//div[@data-cel-widget='search_result_1']");
        private final By productList = By.xpath("//div[@role='listitem']");
        private final By secondItem = By.cssSelector("[data-cel-widget='search_result_2']");
-       private final By itemPricePDP = By.xpath("//div[@id='corePriceDisplay_desktop_feature_div']//span[@class='a-price-whole']");
+       private final By itemPricePDP = By.xpath("//span[contains(@class, 'a-price-whole')]");
        private final By totalSubtotal  = By.xpath("//div[@data-name='Subtotals']//span[@class='a-size-medium a-color-base sc-price sc-white-space-nowrap']");
        private final By firstCategory =By.xpath("//ul[@class='a-unordered-list a-horizontal a-size-small']//span[@class='a-list-item']");
        private final By addToCartPDP = By.id("add-to-cart-button");
