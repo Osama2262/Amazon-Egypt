@@ -110,6 +110,7 @@ import java.util.List;
        public ProductPage clickAddToCartButton() {
            log.info("Clicking Add to Cart on product details page");
            findElement(addToCartPDP).click();
+           return this;
        }
        public boolean collectTotalPrice() {
            log.info("Comparing cart subtotal with selected product prices");
