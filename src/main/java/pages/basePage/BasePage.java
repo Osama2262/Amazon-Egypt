@@ -60,4 +60,21 @@ public class BasePage {
         log.info("Navigating back from current page");
         driver.navigate().back();
     }
+    public void goBackTwice()
+    {
+        log.info("Going back twice");
+        driver.navigate().back();
+        driver.navigate().back();
+
+    }
+    public void safeClick(WebElement element) {
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+
+            element.click();
+        } catch (StaleElementReferenceException | ElementClickInterceptedException e) {
+            log.warn("Standard click failed, attempting JavaScript click fallback: {}", e.getMessage());
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
+    }
 }
